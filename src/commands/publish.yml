@@ -16,12 +16,12 @@ parameters:
     description: "The format of the report: md, html, json"
 steps:
   - setup_remote_docker:
-    version: 19.03.13
+      version: 19.03.13
   - run:
       environment:
-      UPLOAD: <<parameters.upload>>
-      BUCKET: <<parameters.bucket>>
-      FORMAT: <<parameters.format>>
+        UPLOAD: <<parameters.upload>>
+        BUCKET: <<parameters.bucket>>
+        FORMAT: <<parameters.format>>
       name: Publish to cloud provider.
       command: |
         docker run --name <container-name> \
