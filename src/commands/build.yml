@@ -10,3 +10,8 @@ steps:
       command: |
         git clone https://github.com/cloudflare/flan
         cd flan
+  - setup_remote_docker:
+    version: 19.03.13
+  - run:
+      name: Build the docker container
+      command: make build

@@ -7,8 +7,8 @@ parameters:
     default: "html"
     description: "The format of the report: md, html, json"
 steps:
+  - setup_remote_docker:
+    version: 19.03.13
   - run:
-      environment:
-      PARAM_FORMAT: <<parameters.format>>
       name: Create report
-      command: make html
+      command: make <<parameters.format>>

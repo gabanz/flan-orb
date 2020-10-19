@@ -1,7 +1,32 @@
 description: >
   Publish report to AWS or GCP.
 
+parameters:
+  upload:
+    type: string
+    default: "aws"
+    description: "Upload to a AWS S3 or Google Cloud GCS. Option: aws, gcp."
+  bucket:
+    type: bucket
+    default: "flanscan"
+    description: "GCS or AWS S3 bucket name to upload the results to."
+  format:
+    type: string
+    default: "html"
+    description: "The format of the report: md, html, json"
 steps:
+  - setup_remote_docker:
+    version: 19.03.13
   - run:
-      name: Install git client
-      command: echo "Publish to AWS or GCP"
+      environment:
+      UPLOAD: <<parameters.upload>>
+      BUCKET: <<parameters.bucket>>
+      FORMAT: <<parameters.format>>
+      name: Publish to cloud provider.
+      command: |
+        docker run --name <container-name> \
+        -v $(CURDIR)/shared:/shared \
+        -e upload=<<parameters.upload>> \
+        -e bucket=<<parameters.bucket>> \
+        -e format=<<parameters.format>> \
+        flan_scan

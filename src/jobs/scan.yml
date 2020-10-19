@@ -4,6 +4,14 @@ description: >
 executor: default
 
 parameters:
+  upload:
+    type: string
+    default: "aws"
+    description: "Upload to a AWS S3 or Google Cloud GCS. Option: aws, gcp."
+  bucket:
+    type: bucket
+    default: "flanscan"
+    description: "GCS or AWS S3 bucket name to upload the results to."
   format:
     type: string
     default: "html"
@@ -13,4 +21,7 @@ steps:
   - scan
   - report:
       format: << parameters.format >>
-  - publish
+  - publish:
+      upload: << parameters.upload >>
+      bucket: << parameters.bucket >>
+      format: << parameters.format >>
