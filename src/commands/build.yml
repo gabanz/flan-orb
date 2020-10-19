@@ -2,14 +2,24 @@ description: >
   Clone repo and build container.
 
 steps:
-  - setup_remote_docker:
-      version: 19.03.13
   - run:
       name: Download and unzip the repo
       command: |
         curl -sLO https://github.com/cloudflare/flan/archive/master.zip
         unzip master.zip
         cd flan-master
+        docker --version
+        ls
+        cat Makefile
+        make build
+  - setup_remote_docker:
+      version: 19.03.13
   - run:
       name: Build the docker container
-      command: make build
+      command: |
+        pwd
+        ls
+        curl -sLO https://github.com/cloudflare/flan/archive/master.zip
+        unzip master.zip
+        cd flan-master
+        make build
