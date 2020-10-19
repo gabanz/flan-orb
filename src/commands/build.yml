@@ -3,15 +3,20 @@ description: >
 
 steps:
   - run:
-      name: Install git client
+      name: Download and unzip the repo
       command: |
-        apt-get -y install git
- #       apt-get -y install make
-  - run:
-      name: Clone the repository
-      command: |
-        git clone https://github.com/cloudflare/flan
+        curl -svo flan.zip https://github.com/cloudflare/flan/archive/master.zip
+        unzip flan.zip
         cd flan
+#      name: Install git client
+#      command: |
+#        apt-get update && apt-get install -y git
+#        apt-get -y install make
+#  - run:
+#      name: Clone the repository
+#      command: |
+#        git clone https://github.com/cloudflare/flan
+#        cd flan
   - setup_remote_docker:
       version: 19.03.13
   - run:
