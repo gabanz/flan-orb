@@ -26,13 +26,15 @@ jobs:
   # Define one or more jobs which will utilize your orb's commands and parameters to validate your changes.
   integration-test-1:
     docker:
-      - image: cimg/base:stable
+      #- image: cimg/base:stable
+      - image: cimg/python:3.9.0
     steps:
       - checkout
       # "greet" is a sample command packaged with this orb config.
       # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
       # Push new changes first, before adding new tests to your config.
       #- flanscan/greet
+      - flanscan/scan
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
