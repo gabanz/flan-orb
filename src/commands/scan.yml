@@ -1,0 +1,7 @@
+description: >
+  Start scanning.
+
+steps:
+  - run:
+      name: Start scanning
+      command: make start

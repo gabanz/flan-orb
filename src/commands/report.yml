@@ -1,0 +1,14 @@
+description: >
+  Create report.
+
+parameters:
+  format:
+    type: string
+    default: "html"
+    description: "The format of the report: md, html, json"
+steps:
+  - run:
+      environment:
+      PARAM_FORMAT: <<parameters.format>>
+      name: Create report
+      command: make html

@@ -1,0 +1,16 @@
+description: >
+  Scan ports, services and vulnerabilities.
+
+executor: default
+
+parameters:
+  format:
+    type: string
+    default: "html"
+    description: "The format of the report: md, html, json"
+steps:
+  - build
+  - scan
+  - report:
+      format: << parameters.format >>
+  - publish
