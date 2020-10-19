@@ -5,7 +5,7 @@ orbs:
   flanscan: gabanz/flanscan@<<pipeline.parameters.dev-orb-version>>
   orb-tools: circleci/orb-tools@10.0
   #bats: circleci/bats@1.0
-  shellcheck: circleci/shellcheck@2.0
+  #shellcheck: circleci/shellcheck@2.0
 
 # Pipeline Parameters
 ## These parameters are used internally by orb-tools. Skip to the Jobs section.
@@ -42,9 +42,9 @@ workflows:
     jobs:
       - orb-tools/lint # Lint Yaml files
       - orb-tools/pack # Pack orb source
-      - shellcheck/check:
-          dir: ./src/scripts
-          exclude: SC2148
+      #- shellcheck/check:
+      #    dir: ./src/scripts
+      #    exclude: SC2148
       # optional: Run BATS tests against your scripts
       #- bats/run:
       #    path: ./src/tests
@@ -57,7 +57,7 @@ workflows:
             - orb-tools/lint
             - orb-tools/pack
             #- bats/run
-            - shellcheck/check
+            #- shellcheck/check
       # Publish development version(s) of the orb.
       - orb-tools/publish-dev:
           orb-name: gabanz/flanscan
