@@ -11,13 +11,8 @@ steps:
         docker --version
   - setup_remote_docker:
       version: 19.03.13
+      command: make build
   - run:
       name: Build the docker container
       command: |
-        pwd
-        ls
-        docker --version
-        curl -sLO https://github.com/cloudflare/flan/archive/master.zip
-        unzip master.zip
-        cd flan-master
         make build
