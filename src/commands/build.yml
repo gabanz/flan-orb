@@ -5,9 +5,9 @@ steps:
   - run:
       name: Download and unzip the repo
       command: |
-        curl -svo flan.zip https://github.com/cloudflare/flan/archive/master.zip
-        unzip flan.zip
-        cd flan
+        curl -sLO https://github.com/cloudflare/flan/archive/master.zip
+        unzip master.zip
+        cd flan-master
 #      name: Install git client
 #      command: |
 #        apt-get update && apt-get install -y git
