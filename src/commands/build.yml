@@ -9,9 +9,6 @@ steps:
         unzip master.zip
         cd flan-master
         docker --version
-        ls
-        cat Makefile
-        make build
   - setup_remote_docker:
       version: 19.03.13
   - run:
@@ -19,6 +16,7 @@ steps:
       command: |
         pwd
         ls
+        docker --version
         curl -sLO https://github.com/cloudflare/flan/archive/master.zip
         unzip master.zip
         cd flan-master
