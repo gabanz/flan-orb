@@ -7,7 +7,7 @@ parameters:
     default: "aws"
     description: "Upload to a AWS S3 or Google Cloud GCS. Option: aws, gcp."
   bucket:
-    type: bucket
+    type: string
     default: "flanscan"
     description: "GCS or AWS S3 bucket name to upload the results to."
   format:

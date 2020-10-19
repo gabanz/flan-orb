@@ -4,7 +4,9 @@ description: >
 steps:
   - run:
       name: Install git client
-      command: apk add git
+      command: |
+        apk add git
+ #       apt-get -y install make
   - run:
       name: Clone the repository
       command: |
