@@ -5,9 +5,9 @@ steps:
   - run:
       name: Download and unzip the repo
       command: |
-        curl -sL https://github.com/cloudflare/flan/archive/master > master.tar
-        tar xvzf master.tar --strip-components 1
-        rm master.tar
+        curl -soL master.tar.gz https://github.com/cloudflare/flan/tarball/master
+        tar xvzf master.tar.gz --strip-components 1
+        rm master.tar.gz
   - setup_remote_docker:
       version: 19.03.13
   - run:
