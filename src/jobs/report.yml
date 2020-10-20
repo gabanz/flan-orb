@@ -1,5 +1,7 @@
 description: >
-  Create report.
+  Scan ports, services and vulnerabilities, then generate report.
+
+executor: default
 
 parameters:
   format:
@@ -7,6 +9,5 @@ parameters:
     default: "html"
     description: "The format of the report: md, html, json"
 steps:
-  - run:
-      name: Create report
-      command: make <<parameters.format>>
+  - report:
+      format: << parameters.format >>
