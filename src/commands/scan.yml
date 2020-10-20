@@ -7,9 +7,9 @@ steps:
       command: |
         pwd
         ls
+        docker create -v /shared --name fileshare alpine:3.4 /bin/true
+        docker cp /shared fileshare:/shared
         docker run --name flan_scan \
-        -v $(CURDIR)/shared:/shared \
+        -v --volumes-from fileshare \
         -e format=html \
         flan_scan
-        docker cp /shared/ips.txt flan_scan:/shared
-
