@@ -5,13 +5,12 @@ steps:
   - run:
       name: Download and unzip the repo
       command: |
-        curl -sLO https://github.com/cloudflare/flan/archive/master.zip
-        unzip master.zip
-        rm master.zip
+        curl -sL https://github.com/cloudflare/flan/archive/master > master.tar.gz
+        tar xvzf master.tar.gz --strip-components 1
+        rm master.tar.gz
   - setup_remote_docker:
       version: 19.03.13
   - run:
       name: Build the docker container
       command: |
-        cd flan-master
         make build

@@ -5,6 +5,4 @@ steps:
   - run:
       name: Start scanning
       command: |
-        pwd
-        ls
         make start
