@@ -4,4 +4,8 @@ description: >
 steps:
   - run:
       name: Start scanning
-      command: make start
+      command: |
+        pwd
+        ls
+        cd flan-master
+        make start
