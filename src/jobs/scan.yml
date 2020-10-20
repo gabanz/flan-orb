@@ -4,6 +4,5 @@ description: >
 executor: default
 
 steps:
-  - scan:
-      requires:
-        - build
+  - build
+  - scan
