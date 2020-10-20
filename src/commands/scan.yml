@@ -8,7 +8,7 @@ steps:
         pwd
         ls
         docker create -v /shared --name fileshare alpine:3.4 /bin/true
-        docker cp /shared fileshare:/shared
+        docker cp shared fileshare:/shared
         docker run --name flan_scan \
         -v --volumes-from fileshare \
         -e format=html \
