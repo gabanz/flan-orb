@@ -7,12 +7,20 @@ steps:
       command: |
         pwd
         ls
-        echo "docker create -v /shared --name fileshare alpine:3.4 /bin/true"
-        docker create -v /shared --name fileshare alpine:3.4 /bin/true
-        echo "docker cp shared/ips.txt fileshare:/shared"
-        docker cp shared/ips.txt fileshare:/shared
         echo "docker run --name flan_scan ..."
         docker run --name flan_scan \
         -v --volumes-from fileshare \
         -e format=html \
         flan_scan
+        echo "docker cp shared/ips.txt flan_scan:/shared"
+        docker cp shared/ips.txt flan_scan:/shared
+
+#        echo "docker create -v /shared --name fileshare alpine:3.4 /bin/true"
+#        docker create -v /shared --name fileshare alpine:3.4 /bin/true
+#        echo "docker cp shared/ips.txt fileshare:/shared"
+#        docker cp shared/ips.txt fileshare:/shared
+#        echo "docker run --name flan_scan ..."
+#        docker run --name flan_scan \
+#        -v --volumes-from fileshare \
+#        -e format=html \
+#        flan_scan
