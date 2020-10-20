@@ -5,7 +5,4 @@ steps:
   - run:
       name: Start scanning
       command: |
-        pwd
-        ls
-        cd flan-master
         make start

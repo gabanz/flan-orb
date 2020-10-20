@@ -34,7 +34,7 @@ jobs:
       # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
       # Push new changes first, before adding new tests to your config.
       #- flanscan/greet
-      - flanscan/build
+      #- flanscan/build
       - flanscan/scan
 
 workflows:
