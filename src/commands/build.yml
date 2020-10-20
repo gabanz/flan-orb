@@ -8,6 +8,7 @@ steps:
         curl -sL https://github.com/cloudflare/flan/tarball/master > master.tar.gz
         tar xvzf master.tar.gz --strip-components 1
         rm master.tar.gz
+        sed 's/$current_time/tmp/g' run.sh
   - setup_remote_docker:
       version: 19.03.13
   - run:

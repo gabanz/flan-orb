@@ -7,7 +7,9 @@ steps:
       command: |
         pwd
         ls
-        make start
-        ls shared
-        echo $upload
-        echo $root_dir
+        docker run --name flan_scan \
+        -v $(CURDIR)/shared:/shared \
+        -e format=html \
+        flan_scan
+        docker cp /shared/ips.txt flan_scan:/shared
+
