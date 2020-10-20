@@ -9,7 +9,6 @@ steps:
         ls
         echo "docker run --name flan_scan ..."
         docker run --name flan_scan \
-        -v --volumes-from fileshare \
         -e format=html \
         flan_scan
         echo "docker cp shared/ips.txt flan_scan:/shared"
