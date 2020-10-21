@@ -24,10 +24,8 @@ steps:
         echo <<parameters.ip>> > shared/ips.txt
   - run:
       name: Copy credential file
-      environment:
-        GOOGLE_APPLICATION_CREDENTIALS: <<parameters.cred>>
       command: |
-        if [[ -z $GOOGLE_APPLICATION_CREDENTIALS ]]
+        if [[ -f <<parameters.cred>> ]]
         then
           echo "copying creds"
           cp <<parameters.cred>> shared/<<parameters.cred>>
