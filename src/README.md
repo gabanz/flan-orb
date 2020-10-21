@@ -1,10 +1,12 @@
 # Flan Scan Orb
 
-This is [Flan Scan](https://github.com/cloudflare/flan) orb, which is a shareable package of CircleCI configuration you use in your CI/CD builds to scan your server for open ports, services and vulnerability, then subsequently publish the report to AWS S3 bucket or Google Cloud Storage (or both!) in LaTex, HTML, markdown or JSON format.
+This is [Flan Scan](https://github.com/cloudflare/flan) orb, which is a shareable package of CircleCI configuration you can use in your CI/CD builds. It uses nmap to scan your server for open ports, services and vulnerability.
+As part of the workflow, it will automatically publish the report to AWS S3 bucket or Google Cloud Storage (or both!) in LaTex, HTML, markdown or JSON format.
 
 ## How to use
 
-Include this orb in your CircleCI workflows. Refer to the `example.yml`:
+Include this orb in your own CircleCI workflows. You can choose `aws` or `gcp` job, however make sure to include the necessary credentials.
+Refer to the `example.yml` for implementation details.
 
 ```
 description: >
