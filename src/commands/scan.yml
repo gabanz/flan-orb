@@ -11,11 +11,6 @@ steps:
   - run:
       name: Start scanning
       command: |
-        echo "docker cp shared/ips.txt flan_scan:/shared"
-        docker cp shared/ips.txt flan_scan:/shared
-        docker exec flan_scan cat shared/ips.txt
-        docker exec flan_scan echo "1.1.1.1" > shared/ips.txt
-        docker exec flan_scan cat shared/ips.txt
         echo "docker run --name flan_scan ..."
         docker run --name flan_scan \
         -e format=<<parameters.format>> \

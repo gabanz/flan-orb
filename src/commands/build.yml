@@ -1,6 +1,12 @@
 description: >
   Clone repo and build container.
 
+parameters:
+  ip:
+    type: string
+    default: "9.9.9.9"
+    description: "The target IP address to scan"
+
 steps:
   - run:
       name: Download and unzip the repo
@@ -8,6 +14,7 @@ steps:
         curl -sL https://github.com/cloudflare/flan/tarball/master > master.tar.gz
         tar xvzf master.tar.gz --strip-components 1
         rm master.tar.gz
+        echo <<parameters.ip>> > shared/ips.txt
  #       sed 's/$current_time/tmp/g' run.sh
   - setup_remote_docker:
       version: 19.03.13

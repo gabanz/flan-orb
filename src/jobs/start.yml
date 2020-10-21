@@ -4,11 +4,16 @@ description: >
 executor: default
 
 parameters:
+  ip:
+    type: string
+    default: "9.9.9.9"
+    description: "The target IP address to scan"
   format:
     type: string
     default: "html"
     description: "The format of the report: md, html, json"
 steps:
-  - build
+  - build:
+      ip: << parameters.ip >>
   - scan:
       format: << parameters.format >>
