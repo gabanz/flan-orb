@@ -1,7 +1,0 @@
-description: >
-  Build the docker image.
-
-executor: default
-
-steps:
-  - build

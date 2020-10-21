@@ -1,5 +1,5 @@
 description: >
-  Scan ports, services and vulnerabilities, then generate report.
+  Build container, scan ports, services and vulnerabilities, then generate report.
 
 executor: default
 
@@ -9,5 +9,7 @@ parameters:
     default: "html"
     description: "The format of the report: md, html, json"
 steps:
+  - build
+  - scan
   - report:
       format: << parameters.format >>

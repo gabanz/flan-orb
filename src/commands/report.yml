@@ -1,5 +1,5 @@
 description: >
-  Create report.
+  Create report
 
 parameters:
   format:

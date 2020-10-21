@@ -1,18 +1,24 @@
 description: >
-  Start scanning.
+  Scan ports, services and vulnerabilities
+
+parameters:
+  format:
+    type: string
+    default: "html"
+    description: "The format of the report: md, html, json"
 
 steps:
   - run:
       name: Start scanning
       command: |
-        pwd
-        ls
         echo "docker run --name flan_scan ..."
         docker run --name flan_scan \
-        -e format=html \
+        -e format=<<parameters.format>> \
         flan_scan
         echo "docker cp shared/ips.txt flan_scan:/shared"
         docker cp shared/ips.txt flan_scan:/shared
+        echo <<parameters.format>>
+        tree
 
 #        echo "docker create -v /shared --name fileshare alpine:3.4 /bin/true"
 #        docker create -v /shared --name fileshare alpine:3.4 /bin/true
