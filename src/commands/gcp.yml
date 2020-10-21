@@ -18,14 +18,12 @@ parameters:
 steps:
   - run:
       environment:
-        FORMAT: <<parameters.format>>
-        BUCKET: <<parameters.bucket>>
-#        GOOGLE_APPLICATION_CREDENTIALS: <<parameters.cred>>
+        GOOGLE_APPLICATION_CREDENTIALS: <<parameters.cred>>
       name: Start scanning and upload report to GCS bucket
       command: |
         docker run --name flan_scan \
-        -e format=$FORMAT \
+        -e format=<<parameters.format>> \
         -e upload=gcp \
-        -e bucket=$BUCKET \
+        -e bucket=<<parameters.bucket>> \
         -e GOOGLE_APPLICATION_CREDENTIALS=$GOOGLE_APPLICATION_CREDENTIALS \
         flan_scan

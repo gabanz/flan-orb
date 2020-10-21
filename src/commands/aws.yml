@@ -22,16 +22,14 @@ parameters:
 steps:
   - run:
       environment:
-        FORMAT: <<parameters.format>>
-        BUCKET: <<parameters.bucket>>
         AWS_ACCESS_KEY_ID: <<parameters.accesskey>>
         AWS_SECRET_ACCESS_KEY: <<parameters.secret>>
       name: Start scanning and upload report to S3 bucket
       command: |
         docker run --name flan_scan \
-        -e format=$FORMAT \
+        -e format=<<parameters.format>> \
         -e upload=aws \
-        -e bucket=$BUCKET \
+        -e bucket=<<parameters.bucket>> \
         -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
         -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
         flan_scan
