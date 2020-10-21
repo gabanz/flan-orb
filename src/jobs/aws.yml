@@ -28,8 +28,8 @@ parameters:
 steps:
   - build:
       ip: << parameters.ip >>
-  - scan:
+  - aws:
       format: << parameters.format >>
       bucket: << parameters.bucket >>
-#      accesskey: << parameters.accesskey >>
-#      secret: << parameters.secret >>
+      accesskey: << parameters.accesskey >>
+      secret: << parameters.secret >>
