@@ -1,0 +1,29 @@
+description: >
+  Scan ports, services and vulnerabilities and upload result to external cloud storage bucket
+
+parameters:
+  format:
+    type: string
+    default: "html"
+    description: "The format of the report: md, html, json"
+  bucket:
+    type: string
+    default: "flanscan"
+    description: "GCS bucket name to upload the results to"
+  cred:
+    type: string
+    default: "key.json"
+    description: "Google Application Credentials"
+
+steps:
+  - run:
+      environment:
+        GOOGLE_APPLICATION_CREDENTIALS: <<parameters.cred>>
+      name: Start scanning and upload report to GCS bucket
+      command: |
+        docker run --name flan_scan \
+        -e format=<<parameters.format>> \
+        -e upload=gcp \
+        -e bucket=<<parameters.bucket>> \
+        -e GOOGLE_APPLICATION_CREDENTIALS=$GOOGLE_APPLICATION_CREDENTIALS \
+        flan_scan

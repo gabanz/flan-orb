@@ -1,0 +1,40 @@
+description: >
+  Clone repo and build container.
+
+parameters:
+  ip:
+    type: string
+    default: "1.1.1.1"
+    description: "The target IP address to scan"
+  cred:
+    type: string
+    default: "key.json"
+    description: "Google Application Credentials"
+
+steps:
+  - run:
+      name: Download and unzip the repo
+      command: |
+        curl -sL https://github.com/cloudflare/flan/tarball/master > master.tar.gz
+        tar xvzf master.tar.gz --strip-components 1
+        rm master.tar.gz
+  - run:
+      name: Copy IP address to file
+      command: |
+        echo <<parameters.ip>> > shared/ips.txt
+  - run:
+      name: Copy credential file
+      command: |
+        if [[ -f <<parameters.cred>> ]]
+        then
+          echo "copying creds"
+          cp <<parameters.cred>> shared/<<parameters.cred>>
+        else
+          echo "creds not found"
+        fi
+  - setup_remote_docker:
+      version: 19.03.13
+  - run:
+      name: Build the docker container
+      command: |
+        make build

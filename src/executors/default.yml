@@ -1,11 +1,6 @@
 description: >
-  This is a sample executor using Docker and Node.
+  Use the CircleCI next-gen Python image
+#docker:
+#  - image: 'docker:stable-git'
 docker:
-  - image: 'cimg/node:<<parameters.tag>>'
-parameters:
-  tag:
-    default: lts
-    description: >
-      Pick a specific circleci/node image variant:
-      https://hub.docker.com/r/cimg/node/tags
-    type: string
+  - image: cimg/python:3.9.0
