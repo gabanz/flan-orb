@@ -10,8 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2020-10-22
 ### Added
  - Initial Release
-## [1.0.0] - 2020-10-22
+## [2.0.1] - 2020-10-22
 ### Removed
  - start.yml, scan.yml
 
-[1.0.1]: GITHUB TAG URL
+[2.0.1]: GITHUB TAG URL

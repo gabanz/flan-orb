@@ -1,26 +1,30 @@
-# Orb Source
+# Flan Scan Orb
 
-Orbs are shipped as individual `orb.yml` files, however, to make development easier, it is possible to author an orb in _unpacked_ form, which can be _packed_ with the CircleCI CLI and published.
+This is [Flan Scan](https://github.com/cloudflare/flan) orb, which is a shareable package of CircleCI configuration you use in your CI/CD builds to scan your server for open ports, services and vulnerability, then subsequently publish the report to AWS S3 bucket or Google Cloud Storage (or both!) in LaTex, HTML, markdown or JSON format.
 
-The default `.circleci/config.yml` file contains the configuration code needed to automatically pack, test, and deploy and changes made to the contents of the orb source in this directory.
+## How to use
 
-## @orb.yml
+Include this orb in your CircleCI workflows. Refer to the `example.yml`:
 
-This is the entry point for our orb "tree", which becomes our `orb.yml` file later.
-
-Within the `@orb.yml` we generally specify 4 configuration keys
-
-**Keys**
-
-1. **version**
-    Specify version 2.1 for orb-compatible configuration `version: 2.1`
-2. **description**
-    Give your orb a description. Shown within the CLI and orb registry
-3. **display**
-    Specify the `home_url` referencing documentation or product URL, and `source_url` linking to the orb's source repository.
-4. **orbs**
-    (optional) Some orbs may depend on other orbs. Import them here.
-
-## See:
- - [Orb Author Intro](https://circleci.com/docs/2.0/orb-author-intro/#section=configuration)
- - [Reusable Configuration](https://circleci.com/docs/2.0/reusing-config)
+```
+description: >
+  Scan IP 9.9.9.9 and publish report to AWS S3 bucket in JSON format. Concurrently scan IP 8.8.8.8 and publish report to Google Cloud GCS.
+usage:
+  version: 2.1
+  orbs:
+    flanscan: gabanz/flanscan@1.0.1
+  workflows:
+    scan:
+      jobs:
+        - flanscan/aws:
+            format: json
+            ip: 9.9.9.9
+            bucket: flanscan
+            accesskey: abc123
+            secret: abc123
+        - flanscan/gcp:
+            format: html
+            ip: 8.8.8.8
+            bucket: flanscan
+            cred: key.json
+```
