@@ -19,12 +19,17 @@ steps:
         tar xvzf master.tar.gz --strip-components 1
         rm master.tar.gz
         echo <<parameters.ip>> > shared/ips.txt
-        echo $<<parameters.cred>>
-        echo <<parameters.cred>>
-        if [[ -z $<<parameters.cred>> ]]
+  - run:
+      environment:
+        GOOGLE_APPLICATION_CREDENTIALS: <<parameters.cred>>
+      name: Copying creds
+      command: |
+        if [[ -z $GOOGLE_APPLICATION_CREDENTIALS ]]
         then
           echo "copying creds"
           cp <<parameters.cred>> shared/<<parameters.cred>>
+        else
+          echo "creds not found"
         fi
   - setup_remote_docker:
       version: 19.03.13
