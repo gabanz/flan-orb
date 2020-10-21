@@ -4,7 +4,7 @@ description: >
 parameters:
   ip:
     type: string
-    default: "9.9.9.9"
+    default: "1.1.1.1"
     description: "The target IP address to scan"
 
 steps:
@@ -15,7 +15,6 @@ steps:
         tar xvzf master.tar.gz --strip-components 1
         rm master.tar.gz
         echo <<parameters.ip>> > shared/ips.txt
- #       sed 's/$current_time/tmp/g' run.sh
   - setup_remote_docker:
       version: 19.03.13
   - run:
