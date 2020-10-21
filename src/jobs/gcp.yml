@@ -1,5 +1,5 @@
 description: >
-  Build container, scan ports, services and vulnerabilities, then generate report.
+  Build container, scan ports, services and vulnerabilities, then upload report to external storage bucket.
 
 executor: default
 
@@ -12,19 +12,19 @@ parameters:
     type: string
     default: "html"
     description: "The format of the report: md, html, json"
-  upload:
-    type: string
-    default: "aws"
-    description: "Upload to a AWS S3 or Google Cloud GCS. Option: aws, gcp."
   bucket:
     type: string
     default: "flanscan"
-    description: "GCS or AWS S3 bucket name to upload the results to."
+    description: "GCS bucket name to upload the results to"
+  gcp-cred:
+    type: string
+    default: "gcp-cred"
+    description: "Google Application Credentials"
 
 steps:
   - build:
       ip: << parameters.ip >>
   - scan:
       format: << parameters.format >>
-      upload: << parameters.upload >>
       bucket: << parameters.bucket >>
+      gcp-cred: << parameters.gcp-cred >>

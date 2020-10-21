@@ -1,0 +1,35 @@
+description: >
+  Build container, scan ports, services and vulnerabilities, then upload report to external storage bucket.
+
+executor: default
+
+parameters:
+  ip:
+    type: string
+    default: "1.1.1.1"
+    description: "The target IP address to scan"
+  format:
+    type: string
+    default: "html"
+    description: "The format of the report: md, html, json"
+  bucket:
+    type: string
+    default: "flanscan"
+    description: "AWS S3 bucket name to upload the results to"
+  aws-access-key:
+    type: string
+    default: "aws-access-key"
+    description: "AWS Access Key ID"
+  aws-secret:
+    type: string
+    default: "aws-secret"
+    description: "AWS Secret Access Key"
+
+steps:
+  - build:
+      ip: << parameters.ip >>
+  - scan:
+      format: << parameters.format >>
+      bucket: << parameters.bucket >>
+      aws-access-key: << parameters.aws-access-key >>
+      aws-secret: << parameters.aws-secret >>
