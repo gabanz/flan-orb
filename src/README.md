@@ -9,24 +9,22 @@ Include this orb in your own CircleCI workflows. You can choose `aws` or `gcp` j
 Refer to the `example.yml` for implementation details.
 
 ```
-description: >
-  Scan IP 9.9.9.9 and publish report to AWS S3 bucket in JSON format. Concurrently scan IP 8.8.8.8 and publish report to Google Cloud GCS.
-usage:
-  version: 2.1
-  orbs:
-    flanscan: gabanz/flanscan@1.0.1
-  workflows:
-    scan:
-      jobs:
-        - flanscan/aws:
-            format: json
-            ip: 9.9.9.9
-            bucket: flanscan
-            accesskey: abc123
-            secret: abc123
-        - flanscan/gcp:
-            format: html
-            ip: 8.8.8.8
-            bucket: flanscan
-            cred: key.json
+version: "2.1"
+orbs:
+  flanscan: gabanz/flanscan@2.0.1
+
+workflows:
+  scan:
+    jobs:
+      - flanscan/aws:
+          format: html
+          ip: 9.9.9.9
+          bucket: your-s3-bucket-name
+          accesskey: your-aws-access-key
+          secret: your-aws-secret
+      - flanscan/gcp:
+          format: md
+          ip: 8.8.8.8
+          bucket: your-gcs-bucket-name
+          cred: "key.json"
 ```
