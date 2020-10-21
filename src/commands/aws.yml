@@ -20,6 +20,7 @@ parameters:
     description: "AWS Secret Access Key"
 
 steps:
+  - checkout
   - run:
       environment:
         FORMAT: <<parameters.format>>
