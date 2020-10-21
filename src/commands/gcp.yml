@@ -12,7 +12,7 @@ parameters:
     description: "GCS bucket name to upload the results to"
   cred:
     type: string
-    default: "cred"
+    default: "key.json"
     description: "Google Application Credentials"
 
 steps:

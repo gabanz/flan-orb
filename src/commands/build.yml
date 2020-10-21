@@ -6,6 +6,10 @@ parameters:
     type: string
     default: "1.1.1.1"
     description: "The target IP address to scan"
+  cred:
+    type: string
+    default: "key.json"
+    description: "Google Application Credentials"
 
 steps:
   - run:
@@ -15,6 +19,13 @@ steps:
         tar xvzf master.tar.gz --strip-components 1
         rm master.tar.gz
         echo <<parameters.ip>> > shared/ips.txt
+        echo $<<parameters.cred>>
+        echo <<parameters.cred>>
+        if [[ -z $<<parameters.cred>> ]]
+        then
+          echo "copying creds"
+          cp <<parameters.cred>> shared/<<parameters.cred>>
+        fi
   - setup_remote_docker:
       version: 19.03.13
   - run:
