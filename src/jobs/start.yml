@@ -10,6 +10,5 @@ parameters:
     description: "The format of the report: md, html, json"
 steps:
   - build
-  - scan
-  - report:
+  - scan:
       format: << parameters.format >>
