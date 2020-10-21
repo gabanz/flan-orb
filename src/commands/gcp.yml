@@ -18,8 +18,8 @@ parameters:
 steps:
   - run:
       environment:
-        BUCKET: <<parameters.bucket>>
         FORMAT: <<parameters.format>>
+        BUCKET: <<parameters.bucket>>
         GOOGLE_APPLICATION_CREDENTIALS: <<parameters.cred>>
       name: Start scanning and upload report to GCS bucket
       command: |
