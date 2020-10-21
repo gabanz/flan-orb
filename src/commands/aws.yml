@@ -10,28 +10,28 @@ parameters:
     type: string
     default: "flanscan"
     description: "AWS S3 bucket name to upload the results to"
-#  accesskey:
-#    type: string
-#    default: "accesskey"
-#    description: "AWS Access Key ID"
-#  secret:
-#    type: string
-#    default: "secret"
-#    description: "AWS Secret Access Key"
+  accesskey:
+    type: string
+    default: "accesskey"
+    description: "AWS Access Key ID"
+  secret:
+    type: string
+    default: "secret"
+    description: "AWS Secret Access Key"
 
 steps:
   - run:
       environment:
         FORMAT: <<parameters.format>>
         BUCKET: <<parameters.bucket>>
-#        AWS_ACCESS_KEY_ID: <<parameters.accesskey>>
-#        AWS_SECRET_ACCESS_KEY: <<parameters.secret>>
+        AWS_ACCESS_KEY_ID: <<parameters.accesskey>>
+        AWS_SECRET_ACCESS_KEY: <<parameters.secret>>
       name: Start scanning and upload report to S3 bucket
       command: |
         docker run --name flan_scan \
         -e format=$FORMAT \
         -e upload=aws \
         -e bucket=$BUCKET \
+        -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+        -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
         flan_scan
- #       -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
- #       -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
