@@ -22,6 +22,7 @@ parameters:
     description: "Google Application Credentials"
 
 steps:
+  - checkout
   - build:
       ip: << parameters.ip >>
   - gcp:
