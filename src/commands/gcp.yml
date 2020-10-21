@@ -16,6 +16,7 @@ parameters:
     description: "Google Application Credentials"
 
 steps:
+  - checkout
   - run:
       environment:
         FORMAT: <<parameters.format>>
