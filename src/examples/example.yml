@@ -1,13 +1,20 @@
 description: >
-  Sample example description.
-# Provide a use-case based example for using this orb.
-# Everything in the `usage` section will be displayed in the orb registry.
-# Comments are not retained.
+  Sample flan scan workflow
 usage:
   version: 2.1
   orbs:
-    <orb-name>: <namespace>/<orb-name>@1.2.3
+    flanscan: gabanz/flanscan@1.0.0
   workflows:
-    use-my-orb:
+    scan:
       jobs:
-        - <orb-name>/<job-name>
+        - flanscan/aws:
+            format: json
+            ip: 9.9.9.9
+            bucket: flanscan
+            accesskey: abc123
+            secret: abc123
+        - flanscan/gcp:
+            format: html
+            ip: 8.8.8.8
+            bucket: flanscan
+            cred: key.json
