@@ -10,9 +10,9 @@ parameters:
     type: string
     default: "flanscan"
     description: "GCS bucket name to upload the results to"
-  gcp-cred:
+  cred:
     type: string
-    default: "gcp-cred"
+    default: "cred"
     description: "Google Application Credentials"
 
 steps:
@@ -20,7 +20,7 @@ steps:
       environment:
         BUCKET: <<parameters.bucket>>
         FORMAT: <<parameters.format>>
-        GOOGLE_APPLICATION_CREDENTIALS: <<parameters.gcp-cred>>
+        GOOGLE_APPLICATION_CREDENTIALS: <<parameters.cred>>
       name: Start scanning and upload report to GCS bucket
       command: |
         docker run --name flan_scan \

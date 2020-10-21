@@ -16,13 +16,13 @@ parameters:
     type: string
     default: "flanscan"
     description: "AWS S3 bucket name to upload the results to"
-  aws-access-key:
+  accesskey:
     type: string
-    default: "aws-access-key"
+    default: "accesskey"
     description: "AWS Access Key ID"
-  aws-secret:
+  secret:
     type: string
-    default: "aws-secret"
+    default: "secret"
     description: "AWS Secret Access Key"
 
 steps:
@@ -31,5 +31,5 @@ steps:
   - scan:
       format: << parameters.format >>
       bucket: << parameters.bucket >>
-      aws-access-key: << parameters.aws-access-key >>
-      aws-secret: << parameters.aws-secret >>
+      accesskey: << parameters.accesskey >>
+      secret: << parameters.secret >>

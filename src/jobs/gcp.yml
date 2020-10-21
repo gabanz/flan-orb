@@ -16,9 +16,9 @@ parameters:
     type: string
     default: "flanscan"
     description: "GCS bucket name to upload the results to"
-  gcp-cred:
+  cred:
     type: string
-    default: "gcp-cred"
+    default: "cred"
     description: "Google Application Credentials"
 
 steps:
@@ -27,4 +27,4 @@ steps:
   - scan:
       format: << parameters.format >>
       bucket: << parameters.bucket >>
-      gcp-cred: << parameters.gcp-cred >>
+      cred: << parameters.cred >>
